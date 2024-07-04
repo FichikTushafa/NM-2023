@@ -1,0 +1,5 @@
+library(tidyverse)
+octdec <- read_csv("3734899.csv")
+maysept <- read_csv("3734898.csv")
+janapr <- read_csv("3734896.csv")
+NM <- rbind(janapr, maysept, octdec)
