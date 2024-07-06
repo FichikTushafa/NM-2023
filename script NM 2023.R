@@ -25,3 +25,9 @@ nmprcpmax |>
   ggplot(mapping = aes(x = DATE, y = PRCP)) +
   geom_smooth() +
   geom_point()
+
+mdpr x sn32
+
+tavg x tmax
+
+tmax x sx##

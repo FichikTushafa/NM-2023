@@ -22,6 +22,5 @@ SN32 = min soil temp, bare ground, 10cm depth
 SN52 = min soil temp, sod, 10cm depth
 SX32 = max soil temp, bare ground, 10cm depth
 SX52 = max soil temp, sod, 10cm depth
-SNWD = snow depth
 
 source: https://www.ncei.noaa.gov/data/daily-summaries/doc/GHCND_documentation.pdf
