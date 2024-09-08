@@ -12,26 +12,33 @@ NM |>
             mean = mean(PRCP, na.rm = T),
             median = median(PRCP, na.rm = T))
 
+#precip by day, aggregate of stations' data
 NMPRCP <-
   NM |>
   select(DATE, PRCP) |>
   group_by(DATE) |>
-  summarize(prcp = mean(PRCP, na.rm = T)) #THIS WORKS, DONT TOUCH IT!!
+  summarize(PRCP = mean(PRCP, na.rm = T)) #THIS WORKS, DONT TOUCH IT!!
+
+NMPRCP |>
+ggplot(mapping = aes(x = DATE, y = PRCP)) +
+  geom_col(
+    width = 1,
+    fill = "#1733A8"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 0.5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_date(
+    date_breaks = "2 month",
+    date_labels = c("Dec","Feb","Apr","Jun","Aug","Oct")
+  ) +
+  labs(
+    y = "Inches of Precipitation",
+    x = "Day",
+    title = "Average Precipitation per Day, New Mexico, 2023"
+  )
   
-
-NM |>
-ggplot(data = NM, mapping = aes(x = DATE, y = PRCP)) +
-  geom_point()
-
-nmprcpmax <-
-NM |>
-  group_by(DATE) |>
-  slice_max(PRCP, n = 1)
-
-nmprcpmax |>
-  ggplot(mapping = aes(x = DATE, y = PRCP)) +
-  geom_smooth() +
-  geom_point()
 
 mdpr x sn32
 
