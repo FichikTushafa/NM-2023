@@ -11,10 +11,17 @@ NM |>
             max = max(PRCP, na.rm = T),
             mean = mean(PRCP, na.rm = T),
             median = median(PRCP, na.rm = T))
+
+NMPRCP <-
+  NM |>
+  select(DATE, PRCP) |>
+  group_by(DATE) |>
+  summarize(prcp = mean(PRCP, na.rm = T)) #THIS WORKS, DONT TOUCH IT!!
+  
+
 NM |>
 ggplot(data = NM, mapping = aes(x = DATE, y = PRCP)) +
-  geom_point() +
-  geom_(data = nmprcpmax)
+  geom_point()
 
 nmprcpmax <-
 NM |>
