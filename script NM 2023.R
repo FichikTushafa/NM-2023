@@ -4,14 +4,7 @@ maysept <- read_csv("3734898.csv")
 janapr <- read_csv("3734896.csv")
 NM <- rbind(janapr, maysept, octdec)
 
-summary(NM$PRCP)
-
-NM |>
-  summarize(min = min(PRCP, na.rm = T),
-            max = max(PRCP, na.rm = T),
-            mean = mean(PRCP, na.rm = T),
-            median = median(PRCP, na.rm = T))
-
+#Precipitation------
 #precip by day, aggregate of stations' data
 NMPRCP <-
   NM |>
@@ -64,7 +57,8 @@ ggplot(mapping = aes(x = DATE, y = PRCP)) +
                                  face = "bold"),
     axis.text = element_text(size = 10)
   )
-  
+
+#Temperature------
 #avg and max temps by day, aggregate of stations' data
 NMTEMP <-
   NM|>
@@ -79,7 +73,18 @@ NMTEMP <-
 NMTEMP |>
 ggplot(aes(x=DATE)) + 
   geom_line(aes(y=TAVG, color="blue")) + 
-  geom_line(aes(y=TMAX, color="red"))
+  geom_line(aes(y=TMAX, color="red")) +
+  scale_x_date(
+    date_breaks = "2 month",
+    date_labels = c("Dec 1","Feb 1","Apr 1","Jun 1","Aug 1","Oct 1"),
+    expand = c(0,0)
+  ) +
+  labs(
+    y = "Temperature (F)",
+    x = "Date",
+    title = "Average Temperature per Day",
+    subtitle = "New Mexico, 2023"
+  )
 
 
 
